@@ -1,0 +1,35 @@
+#Defaults
+escape ``
+startup_message off
+vbell on
+vbell_msg " Blue. Blue. "
+
+defscrollback 99999
+attrcolor b ".I"
+termcap xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm ti@:te@
+defbce "on"
+
+#Setup hardstatus complete with formatting
+hardstatus on
+hardstatus alwayslastline '%{gk}[%= %{wk}%?%-Lw%?%{=b kR}[%{W}%n%f %t%?(%u)%?%{=b kR}]%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C} %{W}'
+
+# navigating regions with Ctrl-arrows
+bindkey "^[[1;5D" focus left
+bindkey "^[[1;5C" focus right
+bindkey "^[[1;5A" focus up
+bindkey "^[[1;5B" focus down
+
+#Default screens
+screen -t Terminal      0
+screen -t Bash          1
+screen -t Build         2
+screen -t Editor        3
+screen -t Drop-0        4
+screen -t Drop-0-con    5
+screen -t Drop-1        6
+screen -t Drop-1-con    7
+screen -t Instance-0    8
+screen -t Instance-1    9
+
+select 0
