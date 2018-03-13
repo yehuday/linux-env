@@ -111,6 +111,9 @@ alias tl='tree -L '
 alias tl1='tree -L 1 '
 alias tl2='tree -L 2 '
 alias tl3='tree -L 3 '
+alias tl4='tree -L 4 '
+
+alias pcl='find -name "*.rej" -delete -o -name "*.orig" -delete'
 
 # GCC stuff
 alias obd='${CROSS_COMPILE}objdump -rhaD'
@@ -118,7 +121,7 @@ alias a2l='${CROSS_COMPILE}addr2line'
 
 # Git shortcuts 
 alias gl='git log --oneline'
-alias gl='git log --name-status'
+alias gln='git log --name-status'
 alias glf='git log --oneline -10'
 alias gs='git status'
 alias gsh='git show'
@@ -138,6 +141,10 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gry='git review -y'
 alias gfr='gau; gcan; git review;'
+
+alias gsmu='git submodule update --init --recursive'
+alias gsmi='git submodule sync; git submodule update --init --recursive'
+alias gsml='git submodule foreach --recursive "git log --oneline -1"'
 
 # checkpatch
 CHECKPATCH="./scripts/checkpatch.pl"
