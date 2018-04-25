@@ -47,7 +47,7 @@ set incsearch		" Incremental search
 set hlsearch            " Higlight seatch results
 set autowrite		" Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
-set mouse=a		" Enable mouse usage (all modes)
+"set mouse=a		" Enable mouse usage (all modes)
 
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -83,6 +83,7 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'jreybert/vimagit'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hari-rangarajan/CCTree'
+Plugin 'kien/ctrlp.vim'
 "Plugin 'vim-scripts/CCTree'
 "Plugin 'bling/vim-bufferline'
 "Plugin 'vim-scripts/vim-cpp-enhanced-highlight'
