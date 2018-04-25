@@ -114,6 +114,7 @@ alias tl3='tree -L 3 '
 alias tl4='tree -L 4 '
 
 alias pcl='find -name "*.rej" -delete -o -name "*.orig" -delete'
+alias pp1='patch -p1'
 
 # GCC stuff
 alias obd='${CROSS_COMPILE}objdump -rhaD'
@@ -136,6 +137,8 @@ alias ga='git add'
 alias gau='git add -u'
 alias gr='git reset'
 alias grh='git reset --hard'
+alias gri='git rebase -i'
+alias gria='git rebase -i --autosquash'
 alias gfp='git format-patch'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -148,8 +151,12 @@ alias gsml='git submodule foreach --recursive "git log --oneline -1"'
 
 # checkpatch
 CHECKPATCH="./scripts/checkpatch.pl"
-alias chp='git format-patch -n1 | xargs ${CHECKPATCH}'
-alias chp='patch=`git format-patch -n1`; ${CHECKPATCH} ${patch}; rm -f ${patch}'
+checkpatch() {
+	patch=`git format-patch $1^..$1`
+	${CHECKPATCH} ${patch}; rm -f ${patch}
+}
+alias chp='checkpatch HEAD'
+alias chps='checkpatch $1'
 
 MINICOM='-c on'
 export MINICOM
