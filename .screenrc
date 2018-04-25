@@ -10,9 +10,14 @@ termcap xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 termcapinfo xterm ti@:te@
 defbce "on"
 
+term xterm-256color
+
 #Setup hardstatus complete with formatting
 hardstatus on
 hardstatus alwayslastline '%{gk}[%= %{wk}%?%-Lw%?%{=b kR}[%{W}%n%f %t%?(%u)%?%{=b kR}]%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C} %{W}'
+
+# Helpc copying to keyboard
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "cat /tmp/screen-exchange | clipit"'
 
 # navigating regions with Ctrl-arrows
 bindkey "^[[1;5D" focus left
@@ -23,13 +28,13 @@ bindkey "^[[1;5B" focus down
 #Default screens
 screen -t Terminal      0
 screen -t Bash          1
-screen -t Build         2
-screen -t Editor        3
-screen -t Drop-0        4
-screen -t Drop-0-con    5
-screen -t Drop-1        6
-screen -t Drop-1-con    7
-screen -t Instance-0    8
-screen -t Instance-1    9
+screen -t Gp-Drop-0     2
+screen -t Gp-Drop-1	3
+screen -t Gp-VM-0	4
+screen -t Gp-VM-1	5
+screen -t Xen-Drop-0    6
+screen -t Xen-Drop-1    7
+screen -t Xen-VM-0	8
+screen -t Xen-VM-1	9
 
 select 0
