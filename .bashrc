@@ -8,6 +8,12 @@ case $- in
       *) return;;
 esac
 
+set -o vi
+set +o emacs
+
+bind '"\e[1~": beginning-of-line'
+bind '"\e[4~": end-of-line'
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
