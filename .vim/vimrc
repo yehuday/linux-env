@@ -83,7 +83,8 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'jreybert/vimagit'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hari-rangarajan/CCTree'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/ifdef-highlighting'
 "Plugin 'vim-scripts/CCTree'
 "Plugin 'bling/vim-bufferline'
 "Plugin 'vim-scripts/vim-cpp-enhanced-highlight'
@@ -119,16 +120,26 @@ nnoremap <F2> :!
 nnoremap <F3> :b#<CR>
 " use F4 to select a buffer
 nnoremap <F4> :buffers<CR>:buffer<Space>
+
 " F5 move to prev buffer
-nnoremap <F5> :bp<CR>
 " F6 move to next buffer
-nnoremap <F6> :bn<CR>
+
 
 " F7/F8 jump to prev/next error
 nnoremap <F7> :cprevious<CR>
 nnoremap <F8> :cnext<CR>
 
 nnoremap <F9> :wincmd w<CR>
+
+" Copy word under cursor
+nnoremap <C-d> <ESC>yiw
+" Paste word in buffer instead of word under cursor
+nnoremap <C-f> <ESC>ciw<C-r>0<ESC>
+
+" Move to prev tag
+nnoremap <C-z> <ESC>:tprev<CR>
+" Move to next tag
+nnoremap <C-x> <ESC>:tnext<CR>
 
 " Warn on lines above 100 charecters
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -159,3 +170,12 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " Show trailing whitespace and spaces before a tab:
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+" Setup spell checker only for git commit windows
+autocmd FileType gitcommit setlocal spell
+
+" ctrl-p settings
+let g:ctrlp_max_files = 0
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git)$',
+    \ 'file': '\v\.(o|d|orig|rej|patch|deb|gcno|gcda)$',
+    \ }
