@@ -48,6 +48,7 @@ set hlsearch            " Higlight seatch results
 set autowrite		" Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
+set paste
 
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -85,6 +86,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'hari-rangarajan/CCTree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/ifdef-highlighting'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'will133/vim-dirdiff'
 "Plugin 'vim-scripts/CCTree'
 "Plugin 'bling/vim-bufferline'
 "Plugin 'vim-scripts/vim-cpp-enhanced-highlight'
@@ -121,8 +125,11 @@ nnoremap <F3> :b#<CR>
 " use F4 to select a buffer
 nnoremap <F4> :buffers<CR>:buffer<Space>
 
-" F5 move to prev buffer
+" F5 Open NERDTree
+nnoremap <F5> :NERDTree<CR>
+
 " F6 move to next buffer
+nnoremap <F6> :NERDTreeClose<CR>
 
 
 " F7/F8 jump to prev/next error
@@ -137,9 +144,9 @@ nnoremap <C-d> <ESC>yiw
 nnoremap <C-f> <ESC>ciw<C-r>0<ESC>
 
 " Move to prev tag
-nnoremap <C-z> <ESC>:tprev<CR>
+nnoremap <C-a> <ESC>:tprev<CR>
 " Move to next tag
-nnoremap <C-x> <ESC>:tnext<CR>
+nnoremap <C-s> <ESC>:tnext<CR>
 
 " Warn on lines above 100 charecters
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -179,3 +186,10 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git)$',
     \ 'file': '\v\.(o|d|orig|rej|patch|deb|gcno|gcda)$',
     \ }
+
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+  set undolevels=1000
+  set undoreload=1000
+endif
