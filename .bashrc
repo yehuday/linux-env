@@ -103,7 +103,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;33:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -altrF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -138,6 +138,7 @@ alias gca='git commit --amend'
 alias gcf='git commit --fixup='
 alias gcan='git commit --amend --no-edit'
 alias gch='git checkout'
+alias gchp='git checkout -p'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias ga='git add'
