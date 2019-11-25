@@ -17,13 +17,9 @@ hardstatus on
 hardstatus alwayslastline '%{gk}[%= %{wk}%?%-Lw%?%{=b kR}[%{W}%n%f %t%?(%u)%?%{=b kR}]%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C} %{W}'
 
 # Helpc copying to keyboard
-bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "cat /tmp/screen-exchange | clipit"'
+#bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "cat /tmp/screen-exchange | clipit"'
 
-# navigating regions with Ctrl-arrows
-bindkey "^[[1;5D" focus left
-bindkey "^[[1;5C" focus right
-bindkey "^[[1;5A" focus up
-bindkey "^[[1;5B" focus down
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 #Default screens
 screen -t Terminal      0
