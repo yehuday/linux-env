@@ -50,6 +50,7 @@ set autowrite		" Automatically save before commands like :next and :make
 "set mouse=a		" Enable mouse usage (all modes)
 set paste
 set ruler
+set backspace=2
 
 " show existing tab with 8 spaces width
 set tabstop=8
@@ -97,6 +98,8 @@ Plugin 'vim-scripts/ifdef-highlighting'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'will133/vim-dirdiff'
+Plugin 'kshenoy/vim-signature'
+"Plugin 'xavierd/clang_complete'
 "Plugin 'vim-scripts/CCTree'
 "Plugin 'bling/vim-bufferline'
 "Plugin 'vim-scripts/vim-cpp-enhanced-highlight'
