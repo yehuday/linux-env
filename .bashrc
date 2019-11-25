@@ -14,6 +14,11 @@ set +o emacs
 bind '"\e[1~": beginning-of-line'
 bind '"\e[4~": end-of-line'
 
+################# command history stuff ######################
+# history search using pg-dn pg-up
+bind '"\e[5~": history-search-backward'
+bind '"\e[6~": history-search-forward'
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -24,6 +29,13 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
+
+# sync history between shells through history file
+hsync() {
+  builtin history -a
+  builtin history -c
+  builtin history -r
+}
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -83,9 +95,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# history search
-bind '"\e[5~": history-search-backward'
-bind '"\e[6~": history-search-forward'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -152,6 +161,8 @@ alias gfp='git format-patch'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gry='git review -y'
+alias grx='git review -x'
+alias grd='git review -d'
 alias gfr='gau; gcan; git review;'
 alias gfa='git fetch --all'
 
@@ -167,6 +178,10 @@ checkpatch() {
 }
 alias chp='checkpatch HEAD'
 alias chps='checkpatch $1'
+
+kill_screen() {
+	screen -X -S $1  quit
+}
 
 MINICOM='-c on'
 export MINICOM
