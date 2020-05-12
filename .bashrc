@@ -227,3 +227,8 @@ export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 #export LS_COLORS
 
 complete -C '/usr/bin/aws_completer' aws
+export PATH=/home/yehuday/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH=$PATH:/home/yehuday/.fzf/bin
