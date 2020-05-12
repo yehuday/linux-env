@@ -54,9 +54,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+color_prompt=yes
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -136,15 +134,14 @@ alias obd='${CROSS_COMPILE}objdump -rhaD'
 alias a2l='${CROSS_COMPILE}addr2line'
 
 # Git shortcuts 
-alias gl='git log --oneline'
+alias gl='git log --format="%Cblue%h: %Cgreen%cd: %Creset%s" --date=short'
 alias gln='git log --name-status'
-alias glf='git log --oneline -10'
+alias glf='git log --format="%Cblue%h: %Cgreen%cd %C(auto)%d %s" -10 --date="format-local:%Y-%m-%d %H:%M:%S"'
 alias gs='git status'
 alias gsh='git show'
 alias gshn='git show --name-status'
 alias gc='git commit -s'
 alias gca='git commit --amend'
-alias gcf='git commit --fixup='
 alias gcan='git commit --amend --no-edit'
 alias gch='git checkout'
 alias gchp='git checkout -p'
@@ -170,11 +167,18 @@ alias gsmu='git submodule update --init --recursive'
 alias gsmi='git submodule sync; git submodule update --init --recursive'
 alias gsml='git submodule foreach --recursive "git log --oneline -1"'
 
+alias vim='nvim'
+alias ssh='TERM=xterm-256color ssh'
+
+git_cf() {
+	git commit --fixup=$1
+}
+
 # checkpatch
 CHECKPATCH="./scripts/checkpatch.pl"
 checkpatch() {
 	patch=`git format-patch $1^..$1`
-	${CHECKPATCH} ${patch}; rm -f ${patch}
+	${CHECKPATCH} --no-tree --max-line-length=120 ${patch}; rm -f ${patch}
 }
 alias chp='checkpatch HEAD'
 alias chps='checkpatch $1'
